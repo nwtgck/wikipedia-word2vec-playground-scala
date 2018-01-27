@@ -90,8 +90,13 @@ object Main {
     // Print synonyms to stdout
     def printSynonyms(word: String): Unit = {
       println(s"==== Synonym of '${word}' ====")
-      for(synonym <- word2VecModel.findSynonyms(word, 10)){
-        println(s"synonym: ${synonym}")
+      // `word` is in vocabulary
+      if(word2VecModel.getVectors.isDefinedAt(word)){
+        for(synonym <- word2VecModel.findSynonyms(word, 10)){
+          println(s"synonym: ${synonym}")
+        }
+      } else {
+        println(s"word '${word}' not found")
       }
     }
 
@@ -100,6 +105,13 @@ object Main {
     printSynonyms("of")
     printSynonyms("america")
     printSynonyms("obama")
+
+    // User input
+    var inputWord: String = ""
+    while({inputWord = scala.io.StdIn.readLine("word> "); inputWord != null}){
+      // Find synonyms of user input
+      printSynonyms(inputWord)
+    }
 
 
 
