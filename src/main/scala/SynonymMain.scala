@@ -1,5 +1,7 @@
 import org.apache.spark.mllib.feature.Word2VecModel
 import org.apache.spark.sql.SparkSession
+import breeze.linalg.DenseVector
+import org.apache.spark.mllib.linalg.Vectors
 
 import scala.util.Try
 
@@ -7,6 +9,7 @@ object SynonymMain {
   def main(args: Array[String]): Unit = {
 
     // The number of output synonyms
+    // TODO: Hard code
     val nSynonyms: Int = 5
 
     // Get command line args
@@ -16,7 +19,7 @@ object SynonymMain {
       val Array(wikipediaPath, pageLimitStr) = args
       (wikipediaPath, pageLimitStr.toInt)
     }.getOrElse({
-      System.err.println("""Usage: sbt run "<dump xml path> <pageLimit>" """)
+      System.err.println("""Usage: sbt "runMain SynonymMain <dump xml path> <pageLimit>" """)
       sys.exit(1)
     })
 
@@ -32,14 +35,20 @@ object SynonymMain {
     val word2VecModel: Word2VecModel = Word2VecModelGetter.getWord2VecModel(
       sparkSession = sparkSession,
       wikipediaPath = wikipediaPath,
-      pageLimit     = pageLimit
+      pageLimit     = pageLimit,
+      word2VecNIterations = 100 // TODO: Hard code
     )
+
+    // Generate word => vector map
+    val wordToVectorsMap: Map[String, DenseVector[Float]] =
+      word2VecModel.getVectors.map{case (word, vec) => (word, DenseVector(vec))}
+
 
     // Print synonyms to stdout
     def printSynonyms(word: String): Unit = {
       println(s"==== Synonym of '${word}' ====")
       // `word` is in vocabulary
-      if(word2VecModel.getVectors.isDefinedAt(word)){
+      if(wordToVectorsMap.isDefinedAt(word)){
         for(synonym <- word2VecModel.findSynonyms(word, nSynonyms)){
           println(s"synonym: ${synonym}")
         }
