@@ -9,12 +9,16 @@ cd <this repo>
 sbt "runMain SynonymMain $HOME/Downloads/enwiktionary-20180101-pages-articles.xml 1000"
 ```
 
+![synonym](demo_images/word2vec_synonym.gif)
+
 ## Run AnalogyMain
 
 ```bash
 cd <this repo>
 sbt "runMain AnalogyMain $HOME/Downloads/enwiktionary-20180101-pages-articles.xml 1000"
 ```
+
+![synonym](demo_images/word2vec_analogy.gif)
 
 ## References
 
