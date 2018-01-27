@@ -1,6 +1,6 @@
 ## wikipedia-word2vec-playground
 
-A playground of word2vec from Wikipedia Dump with Spark
+A playground of word2vec from [Wikipedia Dump](https://dumps.wikimedia.org/) with [Spark](https://spark.apache.org/)
 
 ## Run SynonymMain
 
