@@ -9,7 +9,7 @@ cd <this repo>
 sbt "runMain SynonymMain $HOME/Downloads/enwiktionary-20180101-pages-articles.xml 1000"
 ```
 
-![synonym](demo_images/word2vec_synonym.gif)
+<img src="demo_images/word2vec_synonym.gif" width="600">
 
 ## Run AnalogyMain
 
@@ -18,7 +18,7 @@ cd <this repo>
 sbt "runMain AnalogyMain $HOME/Downloads/enwiktionary-20180101-pages-articles.xml 1000"
 ```
 
-![synonym](demo_images/word2vec_analogy.gif)
+<img src="demo_images/word2vec_analogy.gif" width="600">
 
 ## References
 
