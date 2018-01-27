@@ -73,8 +73,8 @@ object AnalogyMain {
     val wordToVectorsMap: Map[String, DenseVector[Float]] =
       word2VecModel.getVectors.map{case (word, vec) => (word, DenseVector(vec))}
 
-    // Print synonyms to stdout
-    def printSynonymsByWordExprStr(wordExprStr: String): Unit = {
+    // Print analogies to stdout
+    def printAnalogiesByWordExprStr(wordExprStr: String): Unit = {
       println(s"==== Analogy of '${wordExprStr}' ====")
       // Parse word expression
       WordExprParser(wordExprStr) match {
@@ -85,7 +85,7 @@ object AnalogyMain {
               // Get synonyms
               val synonyms = word2VecModel.findSynonyms(Vectors.dense(vector.toArray.map(_.toDouble)), nSynonyms)
               for(synonym <- synonyms){
-                println(s"synonym: ${synonym}")
+                println(s"analogy: ${synonym}")
               }
             }
           }
@@ -98,7 +98,7 @@ object AnalogyMain {
     // User input
     var wordExprStr: String = ""
     while({wordExprStr = scala.io.StdIn.readLine("> "); wordExprStr != null}){
-      printSynonymsByWordExprStr(wordExprStr)
+      printAnalogiesByWordExprStr(wordExprStr)
     }
 
   }
