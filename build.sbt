@@ -1,4 +1,4 @@
-name := "wikipedia-word2vec-scala"
+name := "wikipedia-word2vec-playground"
 
 version := "0.1"
 
