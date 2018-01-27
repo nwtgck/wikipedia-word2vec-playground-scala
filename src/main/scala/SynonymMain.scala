@@ -3,8 +3,11 @@ import org.apache.spark.sql.SparkSession
 
 import scala.util.Try
 
-object Main {
+object SynonymMain {
   def main(args: Array[String]): Unit = {
+
+    // The number of output synonyms
+    val nSynonyms: Int = 5
 
     // Get command line args
     // 0: Wikipedia Dump XML Path
@@ -37,19 +40,13 @@ object Main {
       println(s"==== Synonym of '${word}' ====")
       // `word` is in vocabulary
       if(word2VecModel.getVectors.isDefinedAt(word)){
-        for(synonym <- word2VecModel.findSynonyms(word, 10)){
+        for(synonym <- word2VecModel.findSynonyms(word, nSynonyms)){
           println(s"synonym: ${synonym}")
         }
       } else {
         println(s"word '${word}' not found")
       }
     }
-
-    printSynonyms("the")
-    printSynonyms("it")
-    printSynonyms("of")
-    printSynonyms("america")
-    printSynonyms("obama")
 
     // User input
     var inputWord: String = ""
