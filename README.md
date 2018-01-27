@@ -5,5 +5,5 @@
 
 ```bash
 cd <this repo>
-sbt "run $HOME/Downloads/enwiktionary-20180101-pages-articles.xml"
+sbt "run $HOME/Downloads/enwiktionary-20180101-pages-articles.xml 1000"
 ```

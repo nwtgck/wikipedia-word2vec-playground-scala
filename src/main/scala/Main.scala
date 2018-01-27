@@ -8,16 +8,21 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{Dataset, Encoders, SparkSession}
 import org.apache.spark.storage.StorageLevel
 
+import scala.util.Try
+
 object Main {
   def main(args: Array[String]): Unit = {
-    require(args.length == 1)
 
-    // Get Wikipedia Dump XML Path
-    val wikipediaPath: String = args(0)
-
-    // Limit of pages
-    // TODO: HARD CODE: This reduces the number of pages
-    val pageLimit: Int = 1000
+    // Get command line args
+    // 0: Wikipedia Dump XML Path
+    // 1: Limit of pages
+    val (wikipediaPath: String, pageLimit: Int) = Try{
+      val Array(wikipediaPath, pageLimitStr) = args
+      (wikipediaPath, pageLimitStr.toInt)
+    }.getOrElse({
+      System.err.println("""Usage: sbt run "<dump xml path> <pageLimit>" """)
+      sys.exit(1)
+    })
 
     // Create spark session
     val sparkSession: SparkSession = SparkSession
