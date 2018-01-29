@@ -56,8 +56,7 @@ object AnalogyMain {
     // Create spark session
     val sparkSession: SparkSession = SparkSession
       .builder()
-      .appName("Wikipedia Dump Loader Test [Spark session]")
-      .master("local[*]")
+      .appName("Wikipedia Word2Vec Playground")
       .config("spark.executor.memory", "1g")
       .getOrCreate()
 
