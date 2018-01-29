@@ -13,8 +13,6 @@ dependsOn(RootProject(uri("git://github.com/nwtgck/wikipedia-dump-loader-scala.g
 
 libraryDependencies += "info.bliki.wiki" % "bliki-core" % "3.1.0"
 libraryDependencies += "org.apache.spark" %% "spark-mllib" % sparkVersion % "provided"
-libraryDependencies += "org.scalanlp" %% "breeze" % breezeVersion
-libraryDependencies += "org.scalanlp" %% "breeze-natives" % breezeVersion
 // https://mvnrepository.com/artifact/com.databricks/spark-xml
 libraryDependencies += "com.databricks" %% "spark-xml" % "0.4.1"
 
