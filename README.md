@@ -34,13 +34,12 @@ sbt assembly
 ```txt
 Usage: Wikipedia Word2Vec Playground [options]
 
-  --mode <value>           play mode (e.g. 'synonym', 'analogy')
+  --mode <value>           play mode (e.g. 'synonym', 'analogy', 'train-only')
   --wikipedia-dump <value>
                            path of Wikipedia dump XML
   --page-limit <value>     limit of page to use
   --word2vec-iterations <value>
                            the number of iterations of word2vec
-
 ```
 
 ## References

@@ -6,8 +6,9 @@ import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.sql.SparkSession
 
 sealed trait PlayMode
-case object SynonymMode extends PlayMode
-case object AnalogyMode extends PlayMode
+case object SynonymMode   extends PlayMode
+case object AnalogyMode   extends PlayMode
+case object TrainOnlyMode extends PlayMode
 
 
 case class Word2VecPlaygroundOptions(wikipediaDumpPath: String = "",
@@ -28,8 +29,10 @@ object Main {
             options.copy(playMode=SynonymMode)
           case "analogy" =>
             options.copy(playMode=AnalogyMode)
+          case "train-only" =>
+            options.copy(playMode=TrainOnlyMode)
         }
-      } text ("play mode (e.g. 'synonym', 'analogy')")
+      } text ("play mode (e.g. 'synonym', 'analogy', 'train-only')")
 
 
       opt[String]("wikipedia-dump").required() action {(v, options) =>
@@ -119,6 +122,7 @@ object Main {
 
 
     playMode match {
+      case TrainOnlyMode => () // DO NOTHING
       case SynonymMode =>
         // User input
         var inputWord: String = ""
