@@ -1,3 +1,5 @@
+package io.github.nwtgck.wikipedia_word2vec_playground
+
 import java.io.File
 
 import info.bliki.wiki.filter.PlainTextConverter

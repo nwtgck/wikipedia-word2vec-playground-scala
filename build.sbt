@@ -10,6 +10,7 @@ val breezeVersion = "0.13.2"
 libraryDependencies += "info.bliki.wiki" % "bliki-core" % "3.1.0"
 libraryDependencies += "org.apache.spark" %% "spark-mllib" % sparkVersion % "provided"
 libraryDependencies += "com.databricks" %% "spark-xml" % "0.4.1"
+libraryDependencies += "com.github.scopt" %% "scopt" % "3.6.0"
 
 // Add dependency of `wikipedia-dump-loader` in GitHub
 // (from: https://github.com/sbt/sbt/issues/3489)

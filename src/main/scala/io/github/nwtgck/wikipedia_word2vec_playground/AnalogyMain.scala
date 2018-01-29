@@ -1,3 +1,5 @@
+package io.github.nwtgck.wikipedia_word2vec_playground
+
 import breeze.linalg.DenseVector
 import org.apache.spark.mllib.feature.Word2VecModel
 import org.apache.spark.mllib.linalg.Vectors

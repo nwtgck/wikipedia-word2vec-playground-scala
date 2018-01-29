@@ -1,3 +1,5 @@
+package io.github.nwtgck.wikipedia_word2vec_playground
+
 import scala.util.parsing.combinator._
 
 sealed trait WordExpr
