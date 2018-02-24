@@ -43,6 +43,9 @@ Usage: Wikipedia Word2Vec Playground [options]
                            the number of iterations of word2vec
 ```
 
+## Wikipedia Dump XML
+Location of Wikipedia Dump is <https://dumps.wikimedia.org/>.
+
 ## References
 
 * <https://dumps.wikimedia.org/enwiktionary/20180101/>
