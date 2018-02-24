@@ -30,7 +30,7 @@ sbt assembly
 ./spark-2.0.0-bin-hadoop2.7/bin/spark-submit --class "io.github.nwtgck.wikipedia_word2vec_playground.Main" --master spark://localhost:7077 target/scala-2.11/wikipedia-word2vec-playground-assembly-0.1.jar --mode=analogy --wikipedia-dump=$HOME/bigfiles/wikipedia_dumps/enwiktionary-20180101-pages-articles.xml --page-limit=1000
 ```
 
-## Options Help
+## Option Help
 
 ```txt
 Usage: Wikipedia Word2Vec Playground [options]
@@ -41,6 +41,7 @@ Usage: Wikipedia Word2Vec Playground [options]
   --page-limit <value>     limit of page to use
   --word2vec-iterations <value>
                            the number of iterations of word2vec
+  --out-dir <value>        a path of output directory
 ```
 
 ## Wikipedia Dump XML
