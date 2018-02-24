@@ -1,0 +1,26 @@
+language: scala
+
+# (from: http://www.scala-sbt.org/1.0/docs/Travis-CI-with-sbt.html)
+before_cache:
+  # Cleanup the cached directories to avoid unnecessary cache updates
+  - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
+  - find $HOME/.sbt        -name "*.lock"               -print -delete
+
+# (from: http://www.scala-sbt.org/1.0/docs/Travis-CI-with-sbt.html)
+# These directories are cached to S3 at the end of the build
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot/
+
+script:
+  # Download & Extract spark commands (source: https://spark.apache.org/downloads.html)
+  - travis_retry curl https://archive.apache.org/dist/spark/spark-2.0.0/spark-2.0.0-bin-hadoop2.7.tgz | tar zxf -
+  # Run a master
+  - ./spark-2.0.0-bin-hadoop2.7/sbin/start-master.sh -h localhost -p 7077
+  # Run a slave
+  - ./spark-2.0.0-bin-hadoop2.7/sbin/start-slave.sh spark://localhost:7077
+  # Generate jar
+  - sbt assembly
+  # NOTE: This is just a working-test
+  - echo -e "a\nof\nhe" | ./spark-2.0.0-bin-hadoop2.7/bin/spark-submit --class "io.github.nwtgck.wikipedia_word2vec_playground.Main" --master spark://localhost:7077 target/scala-2.11/wikipedia-word2vec-playground-assembly-0.1.jar --mode=synonym --page-limit=100 --word2vec-iterations=10 --wikipedia-dump=$PWD/wikipedia_dump_xmls/line159983-enwiktionary-20180101-pages-articles-multistream.xml

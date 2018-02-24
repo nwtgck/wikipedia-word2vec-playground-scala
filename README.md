@@ -1,4 +1,5 @@
 ## wikipedia-word2vec-playground
+[![Build Status](https://travis-ci.org/nwtgck/wikipedia-word2vec-playground-spark.svg?branch=master)](https://travis-ci.org/nwtgck/wikipedia-word2vec-playground-spark)
 
 A playground of word2vec from [Wikipedia Dump](https://dumps.wikimedia.org/) with [Spark](https://spark.apache.org/)
 
