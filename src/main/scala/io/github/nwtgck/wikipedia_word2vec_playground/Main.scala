@@ -14,7 +14,8 @@ case object TrainOnlyMode extends PlayMode
 case class Word2VecPlaygroundOptions(wikipediaDumpPath: String = "",
                                      pageLimit: Int = -1,
                                      word2VecNIterations: Int = 100,
-                                     playMode: PlayMode=SynonymMode)
+                                     playMode: PlayMode=SynonymMode,
+                                     outDirPath: String="out")
 
 object Main {
 
@@ -46,6 +47,10 @@ object Main {
       opt[Int]("word2vec-iterations") action {(v, options) =>
         options.copy(word2VecNIterations=v)
       } text ("the number of iterations of word2vec")
+
+      opt[String]("out-dir") action {(v, options) =>
+        options.copy(outDirPath=v)
+      } text ("a path of output directory")
     }
 
     // Parse options
@@ -65,6 +70,7 @@ object Main {
     val wikipediaPath      : String   = options.wikipediaDumpPath
     val pageLimit          : Int      = options.pageLimit
     val word2VecNIterations: Int      = options.word2VecNIterations
+    val outDirPath         : String   = options.outDirPath
 
     // Create spark session
     val sparkSession: SparkSession = SparkSession
@@ -75,10 +81,11 @@ object Main {
 
     // Get word2vec model
     val word2VecModel: Word2VecModel = Word2VecModelGetter.getWord2VecModel(
-      sparkSession = sparkSession,
-      wikipediaPath = wikipediaPath,
-      pageLimit     = pageLimit,
-      word2VecNIterations = word2VecNIterations
+      sparkSession        = sparkSession,
+      wikipediaPath       = wikipediaPath,
+      pageLimit           = pageLimit,
+      word2VecNIterations = word2VecNIterations,
+      outDirPath          = outDirPath
     )
 
     // Generate word => vector map

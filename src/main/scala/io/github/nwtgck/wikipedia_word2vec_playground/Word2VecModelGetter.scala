@@ -12,7 +12,7 @@ import org.apache.spark.storage.StorageLevel
 
 object Word2VecModelGetter {
 
-  def getWord2VecModel(sparkSession: SparkSession, wikipediaPath: String, pageLimit: Int, word2VecNIterations: Int): Word2VecModel = {
+  def getWord2VecModel(sparkSession: SparkSession, wikipediaPath: String, pageLimit: Int, word2VecNIterations: Int, outDirPath: String): Word2VecModel = {
     // Import implicits
     import sparkSession.implicits._
 
@@ -21,7 +21,7 @@ object Word2VecModelGetter {
       .setNumIterations(word2VecNIterations)
 
     // Get word2vec model path
-    val word2vecModelPath: String = s"out/pagelimit${pageLimit}_iterations${word2VecNIterations}.word2vec_model"
+    val word2vecModelPath: String = s"${outDirPath}/pagelimit${pageLimit}_iterations${word2VecNIterations}.word2vec_model"
 
     // Get word2vec model
     val word2VecModel = if(new File(word2vecModelPath).exists()){
@@ -31,7 +31,7 @@ object Word2VecModelGetter {
       // Create a Parquet directory path
       val parquetPath: String = {
         val xmlFileName: String = new File(wikipediaPath).getName
-        s"out/${xmlFileName}.ds.parquet"
+        s"${outDirPath}/${xmlFileName}.ds.parquet"
       }
 
       // Get Page Dataset
