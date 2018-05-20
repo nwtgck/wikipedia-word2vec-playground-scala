@@ -12,6 +12,20 @@ libraryDependencies += "org.apache.spark" %% "spark-mllib" % sparkVersion % "pro
 libraryDependencies += "com.databricks" %% "spark-xml" % "0.4.1"
 libraryDependencies += "com.github.scopt" %% "scopt" % "3.6.0"
 
-// Add dependency of `wikipedia-dump-loader` in GitHub
+// Add dependency of `spark-wikipedia-dump-loader` in GitHub
 // (from: https://github.com/sbt/sbt/issues/3489)
-dependsOn(RootProject(uri("git://github.com/nwtgck/wikipedia-dump-loader-scala.git#11fd4c0bd54d41bf7cf9813122ceeb3e8e757208")))
+dependsOn(RootProject(uri("git://github.com/nwtgck/spark-wikipedia-dump-loader.git#e6e358dd8cdd5b6200b89f5d2aa76c74b5c1d0d7")))
+
+// (from: https://qiita.com/ytanak/items/97ecc67786ed7c5557bb)
+assemblyMergeStrategy in assembly := {
+  case PathList("javax", "servlet", xs @ _*)         => MergeStrategy.first
+  case PathList(ps @ _*) if ps.last endsWith ".properties" => MergeStrategy.first
+  case PathList(ps @ _*) if ps.last endsWith ".xml" => MergeStrategy.first
+  case PathList(ps @ _*) if ps.last endsWith ".types" => MergeStrategy.first
+  case PathList(ps @ _*) if ps.last endsWith ".class" => MergeStrategy.first
+  case "application.conf"                            => MergeStrategy.concat
+  case "unwanted.txt"                                => MergeStrategy.discard
+  case x =>
+    val oldStrategy = (assemblyMergeStrategy in assembly).value
+    oldStrategy(x)
+}

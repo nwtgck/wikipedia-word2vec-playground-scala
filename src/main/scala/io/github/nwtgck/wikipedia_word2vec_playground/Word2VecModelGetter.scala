@@ -4,7 +4,7 @@ import java.io.File
 
 import info.bliki.wiki.filter.PlainTextConverter
 import info.bliki.wiki.model.WikiModel
-import io.github.nwtgck.wikipedia_dump_loader.{Page, WikipediaDumpLoader}
+import io.github.nwtgck.spark_wikipedia_dump_loader.{Page, WikipediaDumpLoader}
 import org.apache.spark.mllib.feature.{Word2Vec, Word2VecModel}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{Dataset, Encoders, SparkSession}
