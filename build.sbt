@@ -14,7 +14,7 @@ libraryDependencies += "com.github.scopt" %% "scopt" % "3.6.0"
 
 // Add dependency of `spark-wikipedia-dump-loader` in GitHub
 // (from: https://github.com/sbt/sbt/issues/3489)
-dependsOn(RootProject(uri("git://github.com/nwtgck/spark-wikipedia-dump-loader.git#3ddea892f3650493d3af5bc8f2f8199b9e4c8548")))
+dependsOn(RootProject(uri("git://github.com/nwtgck/spark-wikipedia-dump-loader.git#e6e358dd8cdd5b6200b89f5d2aa76c74b5c1d0d7")))
 
 // (from: https://qiita.com/ytanak/items/97ecc67786ed7c5557bb)
 assemblyMergeStrategy in assembly := {
