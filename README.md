@@ -5,11 +5,11 @@ A playground of word2vec from [Wikipedia Dump](https://dumps.wikimedia.org/) wit
 
 ## Synonym
 
-<img src="demo_images/word2vec_synonym.gif" width="600">
+![word2vec_synonym](demo_images/word2vec_synonym.gif)
 
 ## Analogy
 
-<img src="demo_images/word2vec_analogy.gif" width="600">
+![word2vec_analogy](demo_images/word2vec_analogy.gif)
 
 ## Run Analogy in Cluster Mode in localhost
 
