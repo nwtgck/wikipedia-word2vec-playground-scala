@@ -12,6 +12,6 @@ libraryDependencies += "org.apache.spark" %% "spark-mllib" % sparkVersion % "pro
 libraryDependencies += "com.databricks" %% "spark-xml" % "0.4.1"
 libraryDependencies += "com.github.scopt" %% "scopt" % "3.6.0"
 
-// Add dependency of `wikipedia-dump-loader` in GitHub
+// Add dependency of `spark-wikipedia-dump-loader` in GitHub
 // (from: https://github.com/sbt/sbt/issues/3489)
-dependsOn(RootProject(uri("git://github.com/nwtgck/wikipedia-dump-loader-scala.git#11fd4c0bd54d41bf7cf9813122ceeb3e8e757208")))
+dependsOn(RootProject(uri("git://github.com/nwtgck/spark-wikipedia-dump-loader.git#3ddea892f3650493d3af5bc8f2f8199b9e4c8548")))
